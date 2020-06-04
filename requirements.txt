@@ -1,0 +1,7 @@
+Django>=3.0.1
+django-bootstrap4==1.0.1
+django-filter==2.2.0
+djangorestframework==3.11.0
+Pillow==6.2.1
+django-ckeditor
+psycopg2-binary==2.8.4

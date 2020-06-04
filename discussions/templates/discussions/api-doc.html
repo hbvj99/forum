@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% block header-footer %}
+    <style>
+    .card{
+        background:whitesmoke; color: rgba(180, 17, 10, 0.82);padding: 10px;
+    }
+    </style>
+    <div class="container mt-3">
+        <h1 class="jumbotron">API doc</h1>
+        <p>You first need API Key to access or change any content. Make sure you are <a href="{% url 'signup' %}">registered</a> user and you have username and password.<br>Here are some of the examples using <a href="https://curl.haxx.se/">curl</a>.</p>
+    <article class="mt-5">
+        <h3 class="font-weight-bold">Obtaining token key</h3>
+        <p class="card"><b>REQUEST:</b><br>curl -X POST http://localhost:8000/api-token/ -d username="YOUR_USERNAME" -d password="YOUR_PASSWORD"</p>
+        <p class="card"><b>RESPONSE:</b><br>{"token":"77737d18c29e195709nxx76hy7b15dxxxxxxxxxx"}</p>
+        <h2 class="mt-5 font-weight-bold">Discussion</h2>
+        <h5>Get discussion post</h5>
+        <p class="card"><b>REQUEST:</b><br>curl -X GET http://localhost:8000/api-discussion/DISCUSSION_TITLE/ -H "Authorization: Token YOUR_TOKEN_KEY"</p>
+        <p class="card"><b>SAMPLE:</b><br>
+            <samp>
+                {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"user": "new_user13",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"title": "What is Lorem Ipsum?",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"slug": "what-is-lorem-ipsum",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"timestamp": "2020-05-21T16:55:46.537267Z"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"timestamp": "2020-05-24T10:19:20.696988Z"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"content": "Lorem Ipsum is simply dummy text of the printing and typesetting industry."<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"img": "null"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"category": "Others"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"tags": "hello, yelp"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"views": 28<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"votes": 1<br>
+                }<br>
+            </samp></p>
+                <p>Or, get all discussion posts</p>
+                <p class="card"><b>REQUEST:</b><br>curl -X GET http://localhost:8000/api-discussion/ -H "Authorization: Token YOUR_TOKEN_KEY"</p>
+                <p class="card"><b>SAMPLE:</b><br>
+            <samp>
+                &nbsp;{<br>
+                &nbsp;"count": 3,<br>
+                &nbsp;"next": "http://localhost:8000/api-discussion/?limit=10&offset=10",<br>
+                &nbsp;"previous": null,<br>
+                &nbsp;"results": [<br>
+                &nbsp;{<br>
+                &nbsp;"user": "noah56rtx",<br>
+                &nbsp;"title": "where is the book?",<br>
+                &nbsp;"slug": "where-is-the-book",<br>
+                &nbsp;"timestamp": "2020-05-23T17:08:47.343781Z",<br>
+                &nbsp;"updated": "2020-05-23T17:08:47.343809Z",<br>
+                &nbsp;"content": "Can anyone can answer where is the bookself?",<br>
+                &nbsp;"img": null,<br>
+                &nbsp;"category": "Others",<br>
+                &nbsp;"tags": "",<br>
+                &nbsp;"views": 23,<br>
+                &nbsp;"votes": 100<br>
+                &nbsp;},<br>
+                &nbsp;{<br>
+                &nbsp;"user": "maxiumEffor34",<br>
+                &nbsp;"title": "list",<br>
+                &nbsp;"slug": "list-1",<br>
+                &nbsp;"timestamp": "2020-05-23T17:09:35.680983Z",<br>
+                &nbsp;"updated": "2020-05-23T17:09:35.681022Z",<br>
+                &nbsp;"content": "mango",<br>
+                &nbsp;"img": null,<br>
+                &nbsp;"category": "Others",<br>
+                &nbsp;"tags": "",<br>
+                &nbsp;"views": 2,<br>
+                &nbsp;"votes": 1<br>
+                &nbsp;},<br>
+                &nbsp;{<br>
+                &nbsp;"user": "saman09",<br>
+                &nbsp;"title": "who loves mangoes?",<br>
+                &nbsp;"slug": "who-loves-mangoes?",<br>
+                &nbsp;"timestamp": "2020-05-24T10:48:11.489520Z",<br>
+                &nbsp;"updated": "2020-05-24T10:48:11.489556Z",<br>
+                &nbsp;"content": "Anyone have an idea where is the cafe called "who loves mangoes?"",<br>
+                &nbsp;"img": null,<br>
+                &nbsp;"category": "Others",<br>
+                &nbsp;"tags": "",<br>
+                &nbsp;"views": 0,<br>
+                &nbsp;"votes": 0<br>
+                &nbsp;}]}<br>
+            </samp>
+        <h3 class="mt-5 font-weight-bold">Create discussion</h3>
+        <p>img, tags are optional. Find your user ID in <a href="{% url 'profile' %}">profile</a>.</p>
+        <p class="card">curl -d '{"user_id":USER_ID, "title":"TITLE_NAME","content":"YOUR_CONTENT", "category":"CATEGORY_NAME"}' -H "Content-Type: application/json" -H "Authorization: Token YOUR_TOKEN_KEY" -X POST http://localhost:8000/api-discussion/new/</p>
+        <h3 class="mt-5 font-weight-bold">Edit discussion post</h3>
+        <p>img, tags are optional.</p>
+        <p class="card">curl -d '{"user_id":USER_ID, "title":"TITLE_NAME","content":"YOUR_CONTENT", "category":"CATEGORY_NAME"}' -H "Content-Type: application/json" -H "Authorization: Token YOUR_TOKEN_KEY" -X PUT http://localhost:8000/api-discussion/list/</p>
+        <p>For image;</p>
+        <p class="card">curl -X PUT -F 'user_id=USER_ID' -F 'title=TITLE_NAME' -F 'content=YOUR_CONTENT' -F 'img=@/FILE_PATH.EXTENSION' -H "Authorization: Token YOUR_TOKEN_KEY" -H 'content-type: multipart/form-data' http://localhost:8000/api-discussion/DISCUSSION_TITLE/</p>
+        <h3 class="mt-5 font-weight-bold">Delete discussion post</h3>
+        <p class="card">curl -X DELETE http://localhost:8000/api-discussion/DISCUSSION_TITLE/ -H "Authorization: Token YOUR_TOKEN_KEY"</p>
+    </article>
+    </div>
+{% endblock header-footer %}
