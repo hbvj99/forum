@@ -1,0 +1,13 @@
+{% extends 'templates/base.html' %}
+{% block header-footer %}
+    <div id="notfound" class="container" style="padding: 90px;">
+        <div class="notfound-bg"></div>
+        <div class="notfound">
+            <div class="notfound-404">
+                <h1>404 Error!</h1><hr>
+            </div>
+            <h2>we are sorry, but the page you requested "{{ request.path|slice:'1:' }}" was not found</h2><br>
+            <a class="btn btn-outline-success btn-lg" role="button" href="{% url 'homepage' %}" class="home-btn">Go Home</a>
+        </div>
+    </div>
+{% endblock %}

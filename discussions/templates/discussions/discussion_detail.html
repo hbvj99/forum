@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% load humanize %}
+
+{% block header-footer %}
+    <div class="container">
+        <h1 class="mt-3">{{ post.title }}</h1>
+        <span class="badge"><i class="far fa-eye"></i> Views: {{ post.views|intcomma }}</span>
+        <span class="badge"><i class="far fa-heart"></i> Upvote: {{ post.votes_count }}</span>
+        <span class="badge"><i class="fas fa-reply"></i> Replies: {{ comments.count }}</span>
+        <section class="mt-4">
+            <p class="post-meta">
+                <img class="rounded-circle img-fluid" style="height: 3rem;" src="{{ post.user.profile.image.url }}" alt="{{ discussion.user }}"></br><b> Author:</b> <a href="{% url 'homepage' %}?author={{ post.user }}">{{ post.user.first_name }} {{ post.user.last_name }} <span class="badge">{{ post.user }}</span></a><br>
+                <b>Created: </b> {{ post.timestamp|date }}</p></section>
+            <hr>
+            {% include 'discussions/share.html' %}
+        </section>
+        <article class="mt-5">
+            {% if post.img %}
+                <img class="img-fluid" alt="image" src="{{ post.img.url }}"/>
+            {% endif %}
+            <p class="">{{ post.content|safe }}</p>
+            {% if user.is_authenticated %}
+                <form action="{% url 'add_vote' %}" method="POST">
+                    {% csrf_token %}
+                    {% if is_liked %}
+                        <button type="submit" name="vote_id" value="{{ post.id }}" class="btn btn-default"><i
+                                class="far fa-thumbs-down"></i></i> I don't like this content
+                        </button>
+                    {% else %}
+                        <button type="submit" name="vote_id" value="{{ post.id }}" class="btn btn-default"><i
+                                class="far fa-thumbs-up"></i></i> I like this content
+                        </button>
+                    {% endif %}
+                </form>
+            {% endif %}
+        </article>
+        <div class="text-lg mt-5">
+            <p>Category: <a class="badge badge-secondary" href="{% url 'homepage' %}?category={{ post.category }}">{{ post.category }}</a></p>
+            {% if post.tags %}
+            Tags:
+            {% for tag in post.get_tags %}<a class="badge badge-secondary" href="{% url 'homepage' %}?tags={{ tag }}">{{ tag }}</a>
+            {% endfor %}
+            {% endif %}
+        <h3 class="mt-5">Comments</h3>
+        <hr>
+        <div>
+            {% if user.is_authenticated %}<br>
+                <form class="container" method="POST"> {% csrf_token %}
+                    {% bootstrap_form comment_form %}
+                    {{ comment_form.media }}
+                    <input type="submit" value="Post comment" class="btn btn-default">
+                </form>
+            {% else %}
+                <div class="alert alert-warning alert-dismissible fade show col-sm" role="alert">
+                    Please <a href="{% url 'login' %}">login</a> to post a comment or vote.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+        </div>
+        {% for comment in comments %}
+            <div class="card-body">
+                <p><a href="{% url 'homepage' %}?author={{ comment.user }}"><img class="d-flex mr-3 rounded-circle" style="height: 2.3rem;" src="{{ comment.user.profile.image.url }}" alt="{{ comment.user }}"></a></p>
+                {{ comment.content|safe }}
+                <p class="blockquote-footer">By <a href="{% url 'homepage' %}?author={{ comment.user }}">{{ comment.user }}</a> <i class="far fa-calendar-alt"></i> {{ comment.timestamp|date }}
+            </div>
+        {% endfor %}
+    </div>
+    </div>
+
+{% endblock %}

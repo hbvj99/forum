@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/png" href="{% static 'img/favicon.ico' %}"/>
+    <title>{% block title %}{{ site.name }}{% endblock %}</title>
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" crossorigin="anonymous">
+    {% bootstrap_javascript jquery='mini' %}
+</head>
+<body style="min-height: 100vh;display: flex;flex-direction: column;justify-content: space-between;">
+<nav class="navbar container" role="navigation">
+    <div class="navbar-header">
+    </div>
+    {% if user.is_authenticated %}
+        <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+            Hi, {{ request.user.first_name }}
+        </a>
+        <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Log out</a>
+            <a class="dropdown-item" href="{% url 'password_change' %}"><i class="fas fa-key"></i> Change Password</a>
+            <a class="dropdown-item" href="/discussions/new"><i class="fas fa-paste"></i> Create discussion</a>
+            <a class="dropdown-item" href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a>
+            {% if user.is_staff %}
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/admin"><i class="fas fa-user-shield"></i> Admin dashboard</a>
+            {% endif %}
+        </div>
+    {% else %}
+        <h3 class="m-1">
+            <a href="{% url 'login' %}" class="btn btn-outline-secondary" role="button"><i
+                    class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="{% url 'signup' %}" class="btn btn-outline-secondary" role="button"><i
+                    class="fas fa-user-plus"></i> Signup</a>
+        </h3>
+    {% endif %}
+    </div>
+</nav>
+<nav class="navbar navbar-expand navbar-dark" style="background-color: #0088ff;">
+    <ul class="navbar-nav mx-auto container">
+        <li class="nav-item">
+            <a class="navbar-brand" href="{% url 'homepage' %}">HOME</a>
+            <a class="navbar-brand" href="{% url 'api-doc' %}">API</a>
+        </li>
+        {% bootstrap_messages %}
+    </ul>
+</nav>
+{% block header-footer %}{% endblock header-footer %}
+<footer class="footer jumbotron mb-0">
+    <p class="text-center">&copy; Forum</p>
+</footer>
+</body>
+</html>

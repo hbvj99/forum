@@ -1,0 +1,37 @@
+{#<div class="text-center container">#}
+{#        <span class="step-links active">#}
+{#			{% if post.has_previous %}#}
+{#                <a href="?page=1{% if request.GET.article %}&article={{ request.GET.article }}{% endif %}">&laquo; first</a>#}
+{#                <a href="?page= {{ post.previous_page_number }}{% if request.GET.article %}&article={{ request.GET.article }}{% endif %}">previous</a>#}
+{#            {% endif %}#}
+{#            <span post="current">Page {{ post.number }} of {{ post.paginator.num_pages }}</span>#}
+{#            {% if post.has_next %}#}
+{#                <a href="?page={{ post.next_page_number }}{% if request.GET.article %}&article={{ request.GET.article }}{% endif %}">next</a>#}
+{#                <a href="?page={{ post.paginator.num_pages }}{% if request.GET.article %}&article={{ request.GET.article }}{% endif %}">last&raquo;</a>#}
+{#            {% endif %}<br><br>#}
+{#		</span>#}
+{#</div>#}
+{% if post.has_next %}
+    <div class="container">
+        <ul class="pagination justify-content-center">
+            {% if post.has_previous %}
+                <li><a href="?page={{ post.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in post.paginator.page_range %}
+                {% if post.number == i %}
+                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                    <li>&nbsp;<a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+            {% if post.has_next %}
+                <li><a href="?page={{ post.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+    </div>
+{% endif %}
