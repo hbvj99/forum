@@ -16,5 +16,5 @@ class CommentAdmin(admin.ModelAdmin):
 
 admin.site.register(Discussion, DiscussionAdmin)
 admin.site.register(Comment, CommentAdmin)
-admin.site.site_header = 'DJANGO FORUM'
+admin.site.site_header = 'FORUM'
 

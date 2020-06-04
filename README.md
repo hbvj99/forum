@@ -1,7 +1,5 @@
-# django_forum
-A classic discussion app build on Django
-
-![Screenshot from 2019-12-20 21-18-28](https://user-images.githubusercontent.com/43197293/76218953-2adee800-623d-11ea-87f0-ff7cdbe0072f.png)
+# Forum
+A classic discussion app build on Django.
 
 ## How to run locally
 ```
@@ -25,7 +23,6 @@ A classic discussion app build on Django
 - python manage.py migrate
 ```
 
-
 ### Run server
 ```
 - python manage.py runsever
@@ -39,8 +36,6 @@ A classic discussion app build on Django
 
 ### API
 Its build on Django REST framework 3. Refer [here](https://github.com/hbvj99/django_forum/blob/master/REST_API.txt) for simple CRUD operations.
-
-![Screenshot from 2020-03-09 19-39-02](https://user-images.githubusercontent.com/43197293/76219303-bd7f8700-623d-11ea-99ea-62515d31bc51.png)
 
 To get discussion details;
 ```http://localhost:8000/api-discussion/ID/```

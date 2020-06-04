@@ -92,7 +92,7 @@ class DiscussionRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
         # print(post.id)
         # print(update_usr.id)
         # print(request.data.get('user_id'))
-
+        
         if post.user != update_usr:
             return Response({'response': "You don't have permission to edit this discussion."})
         else:
