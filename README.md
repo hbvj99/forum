@@ -1,5 +1,5 @@
-# django_forum
-A classic discussion app build on Django
+# Forum
+A classic discussion app build on Django.
 
 ![Screenshot from 2019-12-20 21-18-28](https://user-images.githubusercontent.com/43197293/76218953-2adee800-623d-11ea-87f0-ff7cdbe0072f.png)
 
@@ -24,7 +24,6 @@ A classic discussion app build on Django
 - python manage.py makemigrations
 - python manage.py migrate
 ```
-
 
 ### Run server
 ```
