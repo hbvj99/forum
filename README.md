@@ -35,4 +35,4 @@ A classic discussion app build on Django.
 ```
 
 ### API
-Its build on Django REST framework 3. Refer [here](https://github.com/hbvj99/django_forum/blob/master/REST_API.txt) for simple CRUD operations.
+Its build on Django REST framework 3. Refer [here](https://github.com/hbvj99/forum/blob/master/REST_API.txt) for simple CRUD operations.
