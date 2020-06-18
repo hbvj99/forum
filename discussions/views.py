@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from discussions.forms import CreatePost, CreateComment
 from discussions.models import Discussion, Comment
 from django.contrib import messages
-from django.db.models import F, Count
+from django.db.models import F
 
 
 def homepage(request):

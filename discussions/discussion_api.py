@@ -1,8 +1,6 @@
-from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from discussions import serializers
-from discussions.serializers import DiscussionSerializer, CommentSerializer
-from discussions.models import Discussion, Comment
+from discussions.serializers import DiscussionSerializer
+from discussions.models import Discussion
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.filters import SearchFilter
 from rest_framework.pagination import LimitOffsetPagination
@@ -15,11 +13,6 @@ class DiscussionPagination(LimitOffsetPagination):
     max_limit = 100
 
 
-# class CommentPagination(LimitOffsetPagination):
-#     default_limit = 10
-#     max_limit = 100
-
-
 class DiscussionViewSet(ListAPIView):
 
     queryset = Discussion.objects.all()
@@ -28,26 +21,6 @@ class DiscussionViewSet(ListAPIView):
     filter_fields = ('user_id', 'user', 'updated', 'timestamp')
     search_fields = ('user_id', 'user', 'title', 'content')
     pagination_class = DiscussionPagination
-
-
-# class CommentViewSet(ListAPIView):
-#
-#     queryset = Comment.objects.all()
-#     serializer_class = CommentSerializer
-#
-#     queryset = Comment.objects.all()
-#     serializer_class = CommentSerializer
-#     filter_backends = (DjangoFilterBackend, SearchFilter)
-#     filter_fields = ('user', 'timestamp')
-#     search_fields = ('user', 'content')
-#     pagination_class = CommentPagination
-#
-#
-# class CommentRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
-#
-#     queryset = Comment.objects.all()
-#     lookup_field = 'id'
-#     serializer_class = CommentSerializer
 
 
 class DiscussionCreate(CreateAPIView):
@@ -89,8 +62,6 @@ class DiscussionRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
         post = Discussion.objects.get(slug=slug)
         update_usr = request.user
 
-        print(post.user.id)
-        print(request.data.get('user_id'))
         if request.data.get('user_id'):
             return Response({'response': "Including user_id as a field is not supported."})
         if post.user != update_usr:
