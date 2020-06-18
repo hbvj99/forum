@@ -87,12 +87,13 @@ class DiscussionRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
 
     def update(self, request, slug, *args, **kwargs):
         post = Discussion.objects.get(slug=slug)
+        update_usr = request.user
 
         print(post.user.id)
         print(request.data.get('user_id'))
-        print(request.user.id)
-
-        if post.user.id and request.user.id != request.data.get('user_id'):
+        if request.data.get('user_id'):
+            return Response({'response': "Including user_id as a field is not supported."})
+        if post.user != update_usr:
             return Response({'response': "You don't have permission to edit this discussion."})
         response = super().update(request, *args, **kwargs)
         if response.status_code == 200:
