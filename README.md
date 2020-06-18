@@ -1,6 +1,8 @@
 # Forum
 A classic discussion app build on Django.
 
+![forum](https://user-images.githubusercontent.com/43197293/85027639-dc28de80-b199-11ea-8a0a-0d01d9a69e8f.png)
+
 ## How to run locally
 ```
 - Clone this repository
