@@ -36,18 +36,3 @@ A classic discussion app build on Django.
 
 ### API
 Its build on Django REST framework 3. Refer [here](https://github.com/hbvj99/django_forum/blob/master/REST_API.txt) for simple CRUD operations.
-
-To get discussion details;
-```http://localhost:8000/api-discussion/ID/```
-
-To add new discussion;
-
-Non-image: ```http://127.0.0.1:8000/api-discussion/new -d title='YOUR_TITLE' -d content='YOUR_CONTENT' -d user=USER_ID```
-
-With image: ```http://127.0.0.1:8000/api-discussion/new -d title='YOUR_TITLE' -d content='YOUR_CONTENT' -d img='FILE_NAME' -d user=USER_ID (not stable)```
-
-To delete;
-```http://localhost:8000/api-discussion/ID/```
-
-To Update;
-```http://127.0.0.1:8000/api-discussion/new -d title='YOUR_TITLE' -d content='YOUR_CONTENT' -d user=USER_ID```

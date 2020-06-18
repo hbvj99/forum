@@ -10,11 +10,11 @@
         <p>You first need API Key to access or change any content. Make sure you are <a href="{% url 'signup' %}">registered</a> user and you have username and password.<br>Here are some of the examples using <a href="https://curl.haxx.se/">curl</a>.</p>
     <article class="mt-5">
         <h3 class="font-weight-bold">Obtaining token key</h3>
-        <p class="card"><b>REQUEST:</b><br>curl -X POST http://localhost:8000/api-token/ -d username="YOUR_USERNAME" -d password="YOUR_PASSWORD"</p>
+        <p class="card"><b>REQUEST:</b><br>curl -X POST http://localhost:8000/api/v1/token/ -d username="YOUR_USERNAME" -d password="YOUR_PASSWORD"</p>
         <p class="card"><b>RESPONSE:</b><br>{"token":"77737d18c29e195709nxx76hy7b15dxxxxxxxxxx"}</p>
         <h2 class="mt-5 font-weight-bold">Discussion</h2>
         <h5>Get discussion post</h5>
-        <p class="card"><b>REQUEST:</b><br>curl -X GET http://localhost:8000/api-discussion/DISCUSSION_TITLE/ -H "Authorization: Token YOUR_TOKEN_KEY"</p>
+        <p class="card"><b>REQUEST:</b><br>curl -X GET http://localhost:8000/api/v1/discussion/DISCUSSION_TITLE/ -H "Authorization: Token YOUR_TOKEN_KEY"</p>
         <p class="card"><b>RESPONSE:</b><br>
             <samp>
                 {<br>
@@ -32,7 +32,7 @@
                 }<br>
             </samp></p>
                 <p>Or, get all discussion posts</p>
-                <p class="card"><b>REQUEST:</b><br>curl -X GET http://localhost:8000/api-discussion/ -H "Authorization: Token YOUR_TOKEN_KEY"</p>
+                <p class="card"><b>REQUEST:</b><br>curl -X GET http://localhost:8000/api/v1/discussion/ -H "Authorization: Token YOUR_TOKEN_KEY"</p>
                 <p class="card"><b>RESPONSE:</b><br>
             <samp>
                 &nbsp;{<br>
@@ -82,14 +82,14 @@
             </samp>
         <h3 class="mt-5 font-weight-bold">Create discussion</h3>
         <p>img, tags are optional. Find your user ID in <a href="{% url 'profile' %}">profile</a>.</p>
-        <p class="card">curl -d '{"user_id":USER_ID, "title":"TITLE_NAME","content":"YOUR_CONTENT", "category":"CATEGORY_NAME"}' -H "Content-Type: application/json" -H "Authorization: Token YOUR_TOKEN_KEY" -X POST http://localhost:8000/api-discussion/new/</p>
+        <p class="card">curl -d '{"user_id":USER_ID, "title":"TITLE_NAME","content":"YOUR_CONTENT", "category":"CATEGORY_NAME"}' -H "Content-Type: application/json" -H "Authorization: Token YOUR_TOKEN_KEY" -X POST http://localhost:8000/api/v1/discussion/new/</p>
         <h3 class="mt-5 font-weight-bold">Edit discussion post</h3>
         <p>img, tags are optional.</p>
-        <p class="card">curl -d '{"user_id":USER_ID, "title":"TITLE_NAME","content":"YOUR_CONTENT", "category":"CATEGORY_NAME"}' -H "Content-Type: application/json" -H "Authorization: Token YOUR_TOKEN_KEY" -X PATCH http://localhost:8000/api-discussion/list/</p>
+        <p class="card">curl -d '{"user_id":USER_ID, "title":"TITLE_NAME","content":"YOUR_CONTENT", "category":"CATEGORY_NAME"}' -H "Content-Type: application/json" -H "Authorization: Token YOUR_TOKEN_KEY" -X PATCH http://localhost:8000/api/v1/discussion/list/</p>
         <p>For image;</p>
-        <p class="card">curl -X PATCH -F 'title=TITLE_NAME' -F 'content=YOUR_CONTENT' -F 'img=@/FILE_PATH.EXTENSION' -H "Authorization: Token YOUR_TOKEN_KEY" -H 'content-type: multipart/form-data' http://localhost:8000/api-discussion/DISCUSSION_TITLE/</p>
+        <p class="card">curl -X PATCH -F 'title=TITLE_NAME' -F 'content=YOUR_CONTENT' -F 'img=@/FILE_PATH.EXTENSION' -H "Authorization: Token YOUR_TOKEN_KEY" -H 'content-type: multipart/form-data' http://localhost:8000/api/v1/discussion/DISCUSSION_TITLE/</p>
         <h3 class="mt-5 font-weight-bold">Delete discussion post</h3>
-        <p class="card">curl -X DELETE http://localhost:8000/api-discussion/DISCUSSION_TITLE/ -H "Authorization: Token YOUR_TOKEN_KEY"</p>
+        <p class="card">curl -X DELETE http://localhost:8000/api/v1/discussion/DISCUSSION_TITLE/ -H "Authorization: Token YOUR_TOKEN_KEY"</p>
     </article>
     </div>
 {% endblock header-footer %}
