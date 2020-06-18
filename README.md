@@ -14,7 +14,7 @@ A classic discussion app build on Django.
 ### Postgres database config
 ```
 - psql -U postgres
-- create user django_forum with password 'aqi_app';
+- create user django_forum with password 'django_forum';
 - create database django_forum;
 - grant all privileges on database django_forum to django_forum;
 ```
