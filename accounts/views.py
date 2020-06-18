@@ -1,16 +1,9 @@
-import os
-
 from django.contrib import messages
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
-from django.http import HttpResponseForbidden, HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from django.shortcuts import redirect
-from django.views.generic import TemplateView
 from django.shortcuts import render, redirect, get_object_or_404
 from accounts.forms import CreateUser, ImageUploadForm, UserDetail
 from discussions.models import Discussion
-from .models import Profile
 from django.contrib.auth.decorators import login_required
 
 
