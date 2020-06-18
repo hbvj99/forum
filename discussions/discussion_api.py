@@ -89,29 +89,28 @@ class DiscussionRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
         post = Discussion.objects.get(slug=slug)
         update_usr = request.user
 
-        # print(post.id)
-        # print(update_usr.id)
-        # print(request.data.get('user_id'))
-        
+        print(post.user.id)
+        print(request.data.get('user_id'))
+        if request.data.get('user_id'):
+            return Response({'response': "Including user_id as a field is not supported."})
         if post.user != update_usr:
             return Response({'response': "You don't have permission to edit this discussion."})
-        else:
-            response = super().update(request, *args, **kwargs)
-            if response.status_code == 200:
-                from django.core.cache import cache
-                discussion = response.data
-                cache.set('discussion_data_{}'.format(discussion['slug']), {
-                    'user': discussion['user'],
-                    'title': discussion['title'],
-                    'updated': discussion['updated'],
-                    'timestamp': discussion['timestamp'],
-                    'content': discussion['content'],
-                    'img': discussion['img'],
-                    'category': discussion['category'],
-                    'tags': discussion['tags'],
-                    'views': discussion['views'],
-                    'votes': discussion['votes'],
-                })
-            return response
+        response = super().update(request, *args, **kwargs)
+        if response.status_code == 200:
+            from django.core.cache import cache
+            discussion = response.data
+            cache.set('discussion_data_{}'.format(discussion['slug']), {
+                'user': discussion['user'],
+                'title': discussion['title'],
+                'updated': discussion['updated'],
+                'timestamp': discussion['timestamp'],
+                'content': discussion['content'],
+                'img': discussion['img'],
+                'category': discussion['category'],
+                'tags': discussion['tags'],
+                'views': discussion['views'],
+                'votes': discussion['votes'],
+            })
+        return response
 
 

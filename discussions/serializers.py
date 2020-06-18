@@ -7,8 +7,8 @@ from django.contrib.auth.models import User
 
 class DiscussionSerializer(serializers.ModelSerializer):
 
-    user_id = serializers.IntegerField(allow_null=True)
-    user = serializers.CharField(read_only=True)
+    user_id = serializers.IntegerField(allow_null=True, required=False)
+    user = serializers.CharField(read_only=True, required=False)
     timestamp = serializers.DateTimeField(read_only=True)
     updated = serializers.DateTimeField(read_only=True)
     title = serializers.CharField(max_length=130, required=True)
