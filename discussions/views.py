@@ -11,12 +11,13 @@ from django.db.models import F
 
 def homepage(request):
     post = Discussion.objects.all().order_by('-views')
-    article_search = request.GET.get("search")
+    article_search = request.GET.get("q")
     category = request.GET.get('category')
     tags = request.GET.get('tags')
     author = request.GET.get('author')
 
     discussion_cat = Discussion.objects.distinct('category')
+
     if article_search:
         post = post.filter(
             Q(title__icontains=article_search) |
@@ -24,6 +25,7 @@ def homepage(request):
             Q(category__icontains=article_search) |
             Q(tags__icontains=article_search)
         ).distinct()
+
     if category:
         post = post.filter(category__icontains=category)
     if author:

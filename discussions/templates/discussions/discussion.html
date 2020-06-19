@@ -12,9 +12,9 @@
         <form method="GET" class="container">
             <div class="form-group">
                 <div class="input-group">
-                    <input class="form-control" type="text" name="search"
+                    <input class="form-control" type="text" name="q"
                            placeholder="Search for name, category, kewords" maxlength="130"
-                           value="{{ request.GET.search }}" required/>
+                           value="{{ request.GET.q }}" required/>
                 </div>
             </div>
         </form>
@@ -59,7 +59,7 @@
         {% include 'paginator.html' %}
     {% else %}
         {% if request.GET %}
-            <h4 class="text-center">Sorry, no result found for "{{ request.GET.search }}"</h4>
+            <h4 class="text-center card-body">Sorry, no result found for "{{ request.GET.q }}"</h4>
         {% else %}
             <h4 class="container">Sorry, no previous results were found.<br><br>Create a new discussion <a href="{% url 'new_discussion' %}">thread</a>?</h4>
         {% endif %}
