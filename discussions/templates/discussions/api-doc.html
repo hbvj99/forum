@@ -85,7 +85,7 @@
         <p class="card">curl -d '{"user_id":USER_ID, "title":"TITLE_NAME","content":"YOUR_CONTENT", "category":"CATEGORY_NAME"}' -H "Content-Type: application/json" -H "Authorization: Token YOUR_TOKEN_KEY" -X POST http://localhost:8000/api/v1/discussion/new/</p>
         <h3 class="mt-5 font-weight-bold">Edit discussion post</h3>
         <p>img, tags are optional.</p>
-        <p class="card">curl -d '{"user_id":USER_ID, "title":"TITLE_NAME","content":"YOUR_CONTENT", "category":"CATEGORY_NAME"}' -H "Content-Type: application/json" -H "Authorization: Token YOUR_TOKEN_KEY" -X PATCH http://localhost:8000/api/v1/discussion/list/</p>
+        <p class="card">curl -d '{"title":"TITLE_NAME","content":"YOUR_CONTENT", "category":"CATEGORY_NAME"}' -H "Content-Type: application/json" -H "Authorization: Token YOUR_TOKEN_KEY" -X PATCH http://localhost:8000/api/v1/discussion/list/</p>
         <p>For image;</p>
         <p class="card">curl -X PATCH -F 'title=TITLE_NAME' -F 'content=YOUR_CONTENT' -F 'img=@/FILE_PATH.EXTENSION' -H "Authorization: Token YOUR_TOKEN_KEY" -H 'content-type: multipart/form-data' http://localhost:8000/api/v1/discussion/DISCUSSION_TITLE/</p>
         <h3 class="mt-5 font-weight-bold">Delete discussion post</h3>

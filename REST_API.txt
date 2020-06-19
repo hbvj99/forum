@@ -11,7 +11,7 @@ Create:
 ```(with-image): curl -X POST http://localhost:8000/api/v1/discussion/new -d user_id=USER_ID -d title='YOUR_TITLE' -d content='YOUR_CONTENT' -d img='' -d category='' -d tags='' -H "Authorization: Token YOUR_TOKEN_KEY"```
 
 To Update;
-```curl -d '{"user_id":USER_ID, "title":"TITLE_NAME","content":"YOUR_CONTENT", "category":"CATEGORY_NAME"}' -H "Content-Type: application/json" -H "Authorization: Token YOUR_TOKEN_KEY" -X PATCH http://localhost:8000/api/v1/discussion/list/```
+```curl -d '{"title":"TITLE_NAME","content":"YOUR_CONTENT", "category":"CATEGORY_NAME"}' -H "Content-Type: application/json" -H "Authorization: Token YOUR_TOKEN_KEY" -X PATCH http://localhost:8000/api/v1/discussion/list/```
 ```(with-image): curl -X PATCH -F 'title=TITLE_NAME' -F 'content=YOUR_CONTENT' -F 'img=@/FILE_PATH.EXTENSION' -H "Authorization: Token YOUR_TOKEN_KEY" -H 'content-type: multipart/form-data' http://localhost:8000/api/v1/discussion/DISCUSSION_TITLE/```
 
 Delete:
