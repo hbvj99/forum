@@ -2,7 +2,7 @@ from rest_framework.response import Response
 from discussions.serializers import DiscussionSerializer
 from discussions.models import Discussion
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
-from rest_framework.filters import SearchFilter
+from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.pagination import LimitOffsetPagination
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.exceptions import ValidationError
@@ -14,12 +14,11 @@ class DiscussionPagination(LimitOffsetPagination):
 
 
 class DiscussionViewSet(ListAPIView):
-
     queryset = Discussion.objects.all()
     serializer_class = DiscussionSerializer
-    filter_backends = (DjangoFilterBackend, SearchFilter)
-    filter_fields = ('user_id', 'user', 'updated', 'timestamp')
-    search_fields = ('user_id', 'user', 'title', 'content')
+    filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+    filter_fields = ('user', 'title', 'content', 'category', 'tags')
+    search_fields = ('title', 'content', 'category', 'tags')
     pagination_class = DiscussionPagination
 
 
