@@ -2,7 +2,7 @@
 {% block header-footer %}
     <style>
     .card{
-        background:whitesmoke; color: rgba(180, 17, 10, 0.82);padding: 10px;
+        background:whitesmoke; color: rgba(180, 17, 10, 0.82);padding: 15px;
     }
     </style>
     <div class="container mt-3">
@@ -84,7 +84,7 @@
         <p>Search can be made for title, content, category, tags</p>
         <p class="card"><b>Example:</b></br>http://localhost:8000/api/v1/discussion/?search=YOUR_SEARCH_TERM</p>
         <h4>1.3 Filter discussion</h4>
-        <P>Content can be filter with user, title, content, category, tags</P>
+        <P>Content can be filter with user_id, title, content, category, tags</P>
         <p class="card">http:localhost.1:8000/api/v1/discussion/?&user=YOUR_USER_ID&title=DISCUSSION_TITLE&content=DISCUSSION_CONTENT_WORD&category=CATEGORY_NAME&tags=TAG_NAME</p>
         <p>You can also use combination</p>
         <p class="card">http://localhost:8000/api/v1/discussion/?search=ann&ordering=others&ordering=-updated</p>
