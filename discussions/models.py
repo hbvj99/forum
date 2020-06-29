@@ -92,7 +92,7 @@ class Comment(models.Model):
     post = models.ForeignKey(Discussion, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.post.title
+        return self.content
 
     def comment_count(self):
         return self.content.count()
