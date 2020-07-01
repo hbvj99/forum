@@ -1,4 +1,9 @@
+# Django
 venv/*
+media
+*.log
+*.pot
+.pyc
 .idea/*
 *__pycache__*
 *.pyc
