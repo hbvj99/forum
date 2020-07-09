@@ -1,8 +1,8 @@
 from django.urls import path
 from rest_framework.authtoken.views import obtain_auth_token
 from . import views
-
 import discussions.discussion_api
+from django.conf.urls.static import static, settings
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
@@ -19,3 +19,7 @@ urlpatterns = [
     path('api/v1/discussion/new/', discussions.discussion_api.DiscussionCreate.as_view()),  # Create discussion API
     path('api/v1/discussion/<slug:slug>/', discussions.discussion_api.DiscussionRetrieveUpdateDestroy.as_view()), # Update, delete discussion API
 ]
+
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_URL)
