@@ -17,7 +17,6 @@ def homepage(request):
     author = request.GET.get('author')
 
     discussion_cat = Discussion.objects.distinct('category')
-
     if article_search:
         post = post.filter(
             Q(title__icontains=article_search) |
@@ -25,14 +24,12 @@ def homepage(request):
             Q(category__icontains=article_search) |
             Q(tags__icontains=article_search)
         ).distinct()
-
     if category:
         post = post.filter(category__icontains=category)
     if author:
         post = post.filter(user__username=author)
     if tags:
         post = post.filter(tags__icontains=tags)
-
     paginator = Paginator(post, 7)  # Show discussions per page
 
     page = request.GET.get('page')
@@ -56,7 +53,9 @@ def add_vote(request):
 
 
 def discussion_detail(request, title):
+
     Discussion.objects.filter(slug=title).update(views=F('views') + 1)  # Count view
+
     post = Discussion.objects.get(slug=title)
     is_liked = False
     if post.votes.filter(id=request.user.id):
