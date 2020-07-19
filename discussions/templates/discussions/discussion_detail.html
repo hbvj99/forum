@@ -10,7 +10,7 @@
         <span class="badge"><i class="fas fa-reply"></i> Replies: {{ comments.count }}</span>
         <section class="mt-4">
             <p class="post-meta">
-                <img class="rounded-circle img-fluid" style="height: 3rem;" src="{{ post.user.profile.image.url }}" alt="{{ discussion.user }}"></br><b> Author:</b> <a href="{% url 'homepage' %}?author={{ post.user }}">{{ post.user.first_name }} {{ post.user.last_name }} <span class="badge">{{ post.user }}</span></a><br>
+                <img class="rounded-circle img-fluid" style="height: 3rem;" {% if post.user.profile.image %}src="{{ post.user.profile.image.url }}"{% else %}src="/static/image/default-user.svg"{% endif %} alt="{{ discussion.user }}"></br><b> Author:</b> <a href="{% url 'homepage' %}?author={{ post.user }}">{{ post.user.first_name }} {{ post.user.last_name }} <span class="badge">{{ post.user }}</span></a><br>
                 <b>Created: </b> {{ post.timestamp|date }}</p></section>
             <hr>
             {% include 'discussions/share.html' %}
