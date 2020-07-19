@@ -14,9 +14,9 @@ A classic discussion app build on Django.
 ### Postgres database config
 ```
 - psql -U postgres
-- create user django_forum with password 'django_forum';
-- create database django_forum;
-- grant all privileges on database django_forum to django_forum;
+- create user DB_USER with password 'YOUR_PASSWORD';
+- create database DB_NAME;
+- grant all privileges on database DB_NAME to DB_USER;
 ```
 
 ### Migrate
@@ -25,11 +25,13 @@ A classic discussion app build on Django.
 - python manage.py migrate
 ```
 
+### Environment
+copy env.example.py to env.py and set credentails inside -> ```forum``
+
 ### Run server
 ```
 - python manage.py runsever
 ```
-### Extra
 ### Backup/Restore data
 ```
 ./manage.py dumpdata > backupdb.jspn
