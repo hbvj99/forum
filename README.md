@@ -26,7 +26,7 @@ A classic discussion app build on Django.
 ```
 
 ### Environment
-copy env.example.py to env.py and set credentails inside -> ```forum``
+Copy ```env.example.py``` to ```env.py``` and set credentails inside ```forum``` directory
 
 ### Run server
 ```
