@@ -42,8 +42,8 @@ def compress_image(img):
 
 class Discussion(models.Model):
     title = models.CharField(max_length=130, blank=False)
-    slug = models.SlugField(unique=True, null=True, blank=True)
-    content = RichTextField(blank=False, max_length=1500)
+    slug = models.SlugField(unique=True, null=True, blank=True, editable=False)
+    content = RichTextField(blank=False, max_length=1500, default='')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)  # Created
     updated = models.DateTimeField(auto_now=True, auto_now_add=False)  # Updated
