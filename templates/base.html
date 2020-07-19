@@ -19,7 +19,7 @@
         <div class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown"
            aria-haspopup="true" aria-expanded="false">
-            Hi, {{ request.user.first_name }}
+            Hi, {% if request.user.first_name %}{{ request.user.first_name }}{% else %}{{ request.user }}{% endif %}
         </a>
         <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Log out</a>
