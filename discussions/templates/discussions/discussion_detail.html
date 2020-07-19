@@ -62,7 +62,7 @@
         </div>
         {% for comment in comments %}
             <div class="card-body">
-                <p><a href="{% url 'homepage' %}?author={{ comment.user }}"><img class="d-flex mr-3 rounded-circle" style="height: 2.3rem;" src="{{ comment.user.profile.image.url }}" alt="{{ comment.user }}"></a></p>
+                <p><a href="{% url 'homepage' %}?author={{ comment.user }}"><img class="d-flex mr-3 rounded-circle" style="height: 2.3rem;" {% if comment.user.profile.image %}src="{{ comment.user.profile.image.url }}"{% else %}src="/static/image/default-user.svg"{% endif %} alt="{{ comment.user }}"></a></p>
                 {{ comment.content|safe }}
                 <p class="blockquote-footer">By <a href="{% url 'homepage' %}?author={{ comment.user }}">{{ comment.user }}</a> <i class="far fa-calendar-alt"></i> {{ comment.timestamp|date }}
             </div>
