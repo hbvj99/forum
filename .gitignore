@@ -9,8 +9,8 @@ local_settings.py
 
 # Environments
 .env
+env*
 venv/
 
 # PyCharm
 .idea/*
-
