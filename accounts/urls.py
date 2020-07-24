@@ -7,5 +7,4 @@ urlpatterns = [
     path('profile/', views.dashboard, name='profile'),
     path('profile/change/', views.image_update, name='image_update'),
     path('edit/', views.edit_account, name='edit_account'),
-    # path('activate/<slug:uidb64>/<slug:token>)/', views.activate, name='activate'),
 ]
