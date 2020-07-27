@@ -17,19 +17,27 @@ def homepage(request):
     author = request.GET.get('author')
 
     discussion_cat = Discussion.objects.distinct('category')
+
     if article_search:
-        post = post.filter(
-            Q(title__icontains=article_search) |
-            Q(content__icontains=article_search) |
-            Q(category__icontains=article_search) |
-            Q(tags__icontains=article_search)
-        ).distinct()
+        queryset = []
+        queries = article_search.split(' ')
+        for article_search in queries:
+            post = post.filter(
+                Q(title__icontains=article_search) |
+                Q(content__icontains=article_search) |
+                Q(category__icontains=article_search) |
+                Q(tags__icontains=article_search)
+            ).distinct()
+            for p in post:
+                queryset.append(p)
+
     if category:
         post = post.filter(category__icontains=category)
     if author:
         post = post.filter(user__username=author)
     if tags:
         post = post.filter(tags__icontains=tags)
+
     paginator = Paginator(post, 7)  # Show discussions per page
 
     page = request.GET.get('page')
@@ -54,7 +62,12 @@ def add_vote(request):
 
 def discussion_detail(request, title):
 
-    Discussion.objects.filter(slug=title).update(views=F('views') + 1)  # Count view
+    # ip = request.META['REMOTE_ADDR']
+    # has_viewed_post = cache.get(ip)
+    # if not has_viewed_post:
+    #     Discussion.objects.filter(slug=title).update(views=F('views') + 1)  # Count view
+
+    Discussion.objects.filter(slug=title).update(views=F('views') + 1)
 
     post = Discussion.objects.get(slug=title)
     is_liked = False
