@@ -40,3 +40,6 @@ Copy ```env.example.py``` to ```env.py``` and set credentails inside ```forum```
 
 ### API
 Its build on Django REST framework 3. Refer [here](https://github.com/hbvj99/forum/blob/master/REST_API.txt) for simple CRUD operations.
+
+## License
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
