@@ -33,7 +33,7 @@ def compress_image(img):
     image_temporary = Image.open(img).convert('RGB')
     output_io_stream = BytesIO()
     image_temporary.thumbnail(size, Image.ANTIALIAS)
-    image_temporary.save(output_io_stream, format='JPEG', quality=75)
+    image_temporary.save(output_io_stream, format='JPEG', quality=75, optimize=True)
     output_io_stream.seek(0)
     img = InMemoryUploadedFile(output_io_stream, 'ImageField', "%s.jpg" % img.name.split('.')[0], 'image/jpeg',
                                sys.getsizeof(output_io_stream), None)
