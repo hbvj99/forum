@@ -1,11 +1,12 @@
+import sys
+from io import BytesIO
+
+from PIL import Image
+from ckeditor.fields import RichTextField
 from django.contrib.auth.models import User
+from django.core.files.uploadedfile import InMemoryUploadedFile
 from django.db import models
 from django.utils.text import slugify
-from ckeditor.fields import RichTextField
-import sys
-from PIL import Image
-from io import BytesIO
-from django.core.files.uploadedfile import InMemoryUploadedFile
 
 CATEGORY_TYPE = (
     ("Apparels & Accessories", "Apparels & Accessories"),

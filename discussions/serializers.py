@@ -1,12 +1,10 @@
 from django.contrib.auth.models import User
-from django.forms import ImageField
-from rest_framework import serializers, request
+from rest_framework import serializers
+
 from discussions.models import Discussion, Comment, CATEGORY_TYPE
-from django.contrib.auth.models import User
 
 
 class DiscussionSerializer(serializers.ModelSerializer):
-
     user_id = serializers.IntegerField(allow_null=True, required=False)
     user = serializers.CharField(read_only=True, required=False)
     timestamp = serializers.DateTimeField(read_only=True)
@@ -29,7 +27,7 @@ class DiscussionSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Discussion
-        fields = ('user_id', 'user', 'title', 'slug', 'timestamp', 'updated', 'content', 'img', 'category', 'tags', 'views', 'votes')
+        fields = '__all__'
 
 
 class CommentSerializer(serializers.ModelSerializer):
