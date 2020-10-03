@@ -21,22 +21,15 @@ EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = ''
 EMAIL_USE_TLS = True
 
-if not DEBUG:
-    PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
-    ROOT_DIR = os.path.dirname(PROJECT_DIR)
+# STATIC, MEDIA FILES
 
-    STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(ROOT_DIR, '../static/')
-
-    MEDIA_ROOT = os.path.join(ROOT_DIR, '../media/')
-    MEDIA_URL = '/media/'
-
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ROOT_DIR = os.path.dirname(BASE_DIR)
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(PROJECT_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static'),
 ]
 
-MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
