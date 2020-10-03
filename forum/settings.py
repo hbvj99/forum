@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+
 from .env import *
 
 # os.environ['DJANGO_SETTINGS_MODULE'] = 'forum.settings'
@@ -63,7 +64,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication'
     ],
     'DEFAULT_PERMISSION_CLASSES': [
-            'rest_framework.permissions.IsAuthenticated'
+        'rest_framework.permissions.IsAuthenticated'
     ],
 }
 
@@ -167,3 +168,12 @@ CKEDITOR_CONFIGS = {
         ]
     },
 }
+
+# STATIC, MEDIA FILES
+ROOT_DIR = os.path.dirname(BASE_DIR)
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(ROOT_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
