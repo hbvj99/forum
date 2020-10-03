@@ -1,3 +1,5 @@
+import os
+
 # Keys, Debug, Host
 SECRET_KEY = ''
 DEBUG = True
@@ -20,8 +22,6 @@ DEFAULT_FROM_EMAIL = ''
 EMAIL_USE_TLS = True
 
 if not DEBUG:
-    import os
-
     PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
     ROOT_DIR = os.path.dirname(PROJECT_DIR)
 
@@ -30,3 +30,13 @@ if not DEBUG:
 
     MEDIA_ROOT = os.path.join(ROOT_DIR, '../media/')
     MEDIA_URL = '/media/'
+
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_DIR, 'static'),
+]
+
+MEDIA_ROOT = os.path.join(PROJECT_DIR, 'media')
+MEDIA_URL = '/media/'
