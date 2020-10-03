@@ -1,10 +1,11 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
+
 from accounts.forms import CreateUser, ImageUploadForm, UserDetail
 from discussions.models import Discussion
-from django.contrib.auth.decorators import login_required
 
 
 def signup(request):
@@ -35,10 +36,9 @@ def dashboard(request):
 
 def image_update(request):
     if request.method == 'POST':
-        img = request.FILES.get('image')
-        user = get_object_or_404(User, username=request.user.username)
-        user.profile.image = img
-        user.save()
+        user = get_object_or_404(User, username=request.user)
+        user.profile.image = request.FILES.get('image') or None
+        user.profile.save()
         return redirect('profile')
     else:
         form = ImageUploadForm(instance=request.user)
