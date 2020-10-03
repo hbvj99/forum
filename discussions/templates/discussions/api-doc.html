@@ -10,7 +10,7 @@
         <p>You first need API Key to access or change any content. Make sure you are <a href="{% url 'signup' %}">registered</a> user and you have username and password.<br>Here are some of the examples using <a href="https://curl.haxx.se/">curl</a>.</p>
     <article class="mt-5">
         <h3 class="font-weight-bold">Obtaining token key</h3>
-        <p class="card"><b>REQUEST:</b><br>curl -X POST /api/v1/token/ -d username="YOUR_USERNAME" -d password="YOUR_PASSWORD"</p>
+        <p class="card"><b>REQUEST:</b><br>curl -X POST /api/v1/token/ -d "username=YOUR_USERNAME&password=YOUR_PASSWORD"</p>
         <p class="card"><b>RESPONSE:</b><br>{"token":"77737d18c29e195709nxx76hy7b15dxxxxxxxxxx"}</p>
         <h2 class="mt-5 font-weight-bold">1. Discussion</h2>
         <h5>1.1 Get discussion post</h5>

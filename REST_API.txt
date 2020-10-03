@@ -1,7 +1,7 @@
 REST API Guide!
 
 Get API token key for user:
-```curl -X POST http://localhost:8000/api/v1/token/ -d username="YOUR_USERNAME" -d password="YOUR_PASSWORD"```
+```curl -X POST http://localhost:8000/api/v1/token/ -d "username=YOUR_USERNAME&password=YOUR_PASSWORD"```
 
 Get:
 ```curl -X GET http://localhost:8000/api/v1/discussion/DISCUSSION_TITLE/ -H "Authorization: Token YOUR_TOKEN_KEY"```
