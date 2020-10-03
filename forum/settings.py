@@ -148,9 +148,9 @@ PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.dirname(PROJECT_DIR)
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(ROOT_DIR, 'static/')
+STATIC_ROOT = os.path.join(ROOT_DIR, '../static/')
 
-MEDIA_ROOT = os.path.join(ROOT_DIR, 'media/')
+MEDIA_ROOT = os.path.join(ROOT_DIR, '../media/')
 MEDIA_URL = '/media/'
 
 
