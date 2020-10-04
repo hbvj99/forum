@@ -33,6 +33,10 @@ class ImageUploadForm(forms.ModelForm):
         model = Profile
         fields = ['image']
 
+        labels = {
+            'image': '(JPEG/PNG)'
+        }
+
 
 class UserDetail(forms.ModelForm):
     class Meta:
