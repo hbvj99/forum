@@ -1,6 +1,7 @@
+from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django import forms
+
 from accounts.models import Profile
 
 
@@ -16,6 +17,12 @@ class CreateUser(UserCreationForm):
             'password1': forms.PasswordInput(attrs={'placeholder': 'Enter password'}),
             'password2': forms.PasswordInput(attrs={'placeholder': 'Enter password again'})
         }
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if email and User.objects.filter(email=email).exists():
+            raise forms.ValidationError(u'Sorry, somebody already registered with this email address.')
+        return email
 
 
 class ImageUploadForm(forms.ModelForm):
