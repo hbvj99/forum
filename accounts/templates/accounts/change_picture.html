@@ -7,7 +7,7 @@
         <div class="card text-center">
             <h5 class="card-header">Change profile picture</h5>
             <div class="card-body">
-                <img class="img-fluid rounded-circle text-center" style="height: 20rem;" src="{{ request.user.profile.image.url }}" alt="{{request.user}}"><hr>
+                <img class="img-fluid rounded-circle text-center" style="height: 20rem;" {% if request.user.profile.image %}src="{{ request.user.profile.image.url }}"{% else %}src="/static/image/default-user.svg"{% endif %} alt="{{ request.user }}"><hr>
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     {% bootstrap_form form %}
