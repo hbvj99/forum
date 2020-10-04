@@ -1,8 +1,11 @@
 from django import forms
+from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
 from accounts.models import Profile
+
+User = get_user_model()
 
 
 class CreateUser(UserCreationForm):
@@ -40,9 +43,3 @@ class UserDetail(forms.ModelForm):
             'last_name': forms.TextInput(attrs={'placeholder': 'Your last name'}),
             'email': forms.TextInput(attrs={'placeholder': 'Your email address i.e. someone@domain.com'})
         }
-
-    def clean_email(self):
-        email = self.cleaned_data.get('email')
-        if email and User.objects.filter(email=email).exists():
-            raise forms.ValidationError(u'Sorry, this email address is already registered!')
-        return email
