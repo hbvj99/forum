@@ -40,3 +40,9 @@ class UserDetail(forms.ModelForm):
             'last_name': forms.TextInput(attrs={'placeholder': 'Your last name'}),
             'email': forms.TextInput(attrs={'placeholder': 'Your email address i.e. someone@domain.com'})
         }
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if email and User.objects.filter(email=email).exists():
+            raise forms.ValidationError(u'Sorry, this email address is already registered!')
+        return email
