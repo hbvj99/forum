@@ -36,8 +36,9 @@ def dashboard(request):
 
 def image_update(request):
     if request.method == 'POST':
-        user = get_object_or_404(User, username=request.user.username)
-        user.profile.image = request.FILES.get('image') or None
+        user = get_object_or_404(User, username=request.user)
+        img = request.FILES['image']
+        user.profile.image = img
         user.profile.save()
         return redirect('profile')
     else:
