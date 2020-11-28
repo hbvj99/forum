@@ -49,15 +49,6 @@ INSTALLED_APPS = [
     'ckeditor'
 ]
 
-# REST_FRAMEWORK = {
-#
-#     'DEFAULT_AUTHENTICATION_CLASSES': [
-#
-#         'rest_framework.authentication.TokenAuthentication',  # <-- And here
-#         # AUTH_USER_MODEL = 'users.CustomUser'  # custom user
-#     ],
-# }
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
@@ -79,7 +70,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'forum.urls'
-
 
 TEMPLATES = [
     {
@@ -142,15 +132,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/2.2/howto/static-files/
-
-
-# For local testing
-# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-# EMAIL_FILE_PATH = os.path.join(BASE_DIR, "email/password_reset")
-
-
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
@@ -171,10 +152,20 @@ CKEDITOR_CONFIGS = {
 }
 
 # STATIC, MEDIA FILES
-ROOT_DIR = os.path.dirname(BASE_DIR)
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/2.2/howto/static-files/
+
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(ROOT_DIR, 'static')
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+if DEBUG is True:
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static'),
+    ]
+
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
