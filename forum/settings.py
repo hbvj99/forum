@@ -155,17 +155,15 @@ CKEDITOR_CONFIGS = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
-
 STATIC_URL = '/static/'
-
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 if DEBUG is True:
     STATICFILES_DIRS = [
         os.path.join(BASE_DIR, 'static'),
     ]
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    MEDIA_ROOT = os.path.join(BASE_DIR, '../media')
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
