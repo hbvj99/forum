@@ -5,6 +5,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 
 from accounts.forms import CreateUser, ImageUploadForm, UserDetail
+from accounts.models import Profile
 from discussions.models import Discussion
 
 
@@ -35,10 +36,12 @@ def dashboard(request):
 
 
 def image_update(request):
-    if request.method == 'POST' and request.user.profile.image:
+    if request.method == 'POST':
+        Profile.objects.get_or_create(user=request.user)
         user = get_object_or_404(User, username=request.user)
         user.profile.image = request.FILES.get('image', None)
         user.profile.save()
+        user.save()
         return redirect('profile')
     else:
         form = ImageUploadForm(instance=request.user)
